@@ -1,16 +1,18 @@
+import { Animated, Easing, FlatList, I18nManager, Platform, ScrollView, View } from 'react-native';
 import React, { Component } from 'react';
-import { Animated, Easing, FlatList, I18nManager, Platform, ScrollView, View, ViewPropTypes } from 'react-native';
-import PropTypes from 'prop-types';
-import shallowCompare from 'react-addons-shallow-compare';
 import {
-    defaultScrollInterpolator,
-    stackScrollInterpolator,
-    tinderScrollInterpolator,
     defaultAnimatedStyles,
+    defaultScrollInterpolator,
     shiftAnimatedStyles,
     stackAnimatedStyles,
-    tinderAnimatedStyles
+    stackScrollInterpolator,
+    tinderAnimatedStyles,
+    tinderScrollInterpolator
 } from '../utils/animations';
+
+import PropTypes from 'prop-types';
+import {ViewPropTypes} from 'deprecated-react-native-prop-types';
+import shallowCompare from 'react-addons-shallow-compare';
 
 const IS_IOS = Platform.OS === 'ios';
 
@@ -43,8 +45,8 @@ export default class Carousel extends Component {
         autoplayDelay: PropTypes.number,
         autoplayInterval: PropTypes.number,
         callbackOffsetMargin: PropTypes.number,
-        containerCustomStyle: ViewPropTypes ? ViewPropTypes.style : View.propTypes.style,
-        contentContainerCustomStyle: ViewPropTypes ? ViewPropTypes.style : View.propTypes.style,
+        containerCustomStyle:  (ViewPropTypes ? ViewPropTypes?.style : View?.propTypes?.style) ?? PropTypes.any,
+        contentContainerCustomStyle:  (ViewPropTypes ? ViewPropTypes?.style : View?.propTypes?.style) ?? PropTypes.any,
         enableMomentum: PropTypes.bool,
         enableSnap: PropTypes.bool,
         firstItem: PropTypes.number,
@@ -61,7 +63,7 @@ export default class Carousel extends Component {
         scrollEnabled: PropTypes.bool,
         scrollInterpolator: PropTypes.func,
         slideInterpolatedStyle: PropTypes.func,
-        slideStyle: ViewPropTypes ? ViewPropTypes.style : View.propTypes.style,
+        slideStyle:  (ViewPropTypes ? ViewPropTypes?.style : View?.propTypes?.style) ?? PropTypes.any,
         shouldOptimizeUpdates: PropTypes.bool,
         swipeThreshold: PropTypes.number,
         useScrollView: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
